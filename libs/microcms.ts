@@ -1,5 +1,5 @@
 import { createClient, MicroCMSQueries } from "microcms-js-sdk";
-import { Blog } from "./microcms.types";
+import { Article } from "./microcms.types";
 import { notFound } from "next/navigation";
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
@@ -15,12 +15,20 @@ export const client = createClient({
   apiKey: process.env.MICROCMS_API_KEY,
 });
 
-export const getList = async (queries?: MicroCMSQueries) => {
+export const fetchArticleList = async (queries?: MicroCMSQueries) => {
   const listData = await client
-    .getList<Blog>({
-      endpoint: "blogs",
+    .getList<Article>({
+      endpoint: "articles",
       queries,
     })
     .catch(notFound);
   return listData;
+};
+
+export const fetchArticle = async (id: string) => {
+  const data = await client.get<Article>({
+    endpoint: "articles",
+    contentId: id,
+  }).catch(notFound);
+  return data;
 };

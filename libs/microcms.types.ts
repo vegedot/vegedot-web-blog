@@ -5,12 +5,18 @@ export type Category = {
 } & MicroCMSContentId &
   MicroCMSDate;
 
-export type Blog = {
-  title: string;
-  content: string;
-  eyeCatch: MicroCMSImage;
-  category: Category;
+export type Tag = {
+  name: string;
+  logo: MicroCMSImage;
 } & MicroCMSContentId &
   MicroCMSDate;
 
-export type Article = Blog & MicroCMSContentId & MicroCMSDate;
+export type Article = {
+  title: string;
+  content: string;
+  thumbnail: MicroCMSImage;
+  category: Category;
+  tags: Tag[];
+} & MicroCMSContentId &
+  MicroCMSDate;
+

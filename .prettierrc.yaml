@@ -4,3 +4,4 @@ trailingComma: "es5"
 semi: true
 singleQuote: false
 jsxSingleQuote: false
+pluigns: ["prettier-plugin-tailwindcss"]
